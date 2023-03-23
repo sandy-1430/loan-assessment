@@ -24,6 +24,7 @@ export default function LoanOffer() {
                 return loan;
             })
             setLoanDetails(loanData);
+            setRenderItems(renderItems ? false : true);
         }
     }, [appInfo])
 
