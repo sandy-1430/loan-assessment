@@ -44,7 +44,7 @@ export default function AppContext({ children }) {
 
 
     return (
-        <ContextLoan.Provider value={{ userInfo, appInfo, loanDetails, setLoanDetails }}>
+        <ContextLoan.Provider value={{ userInfo, appInfo, loanDetails }}>
             {children}
         </ContextLoan.Provider>
     )

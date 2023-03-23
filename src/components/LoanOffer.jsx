@@ -3,38 +3,35 @@ import { ContextLoan } from "../Context/AppContext";
 import uuid from 'react-uuid';
 
 export default function LoanOffer() {
-    const { userInfo, appInfo, loanDetails, setLoanDetails } = useContext(ContextLoan);
+    const { userInfo, appInfo, loanDetails } = useContext(ContextLoan);
     const [renderItems, setRenderItems] = useState(false);
+    const [loan, setLoan] = useState([]);
 
     useEffect(() => {
-        if (appInfo?.length) {
-            let principal = appInfo[0].loan_amount;
-            let loanData = loanDetails?.map((loan) => {
-                const Interest = parseFloat(loan.interest_rate / 100 / 12);
-                const Payments = parseFloat(loan.tenure * 12);
-                const x = Math.pow(1 + Interest, Payments);
-                const monthly = (principal * x * Interest) / (x - 1);
-                const totalPayment = (monthly * Payments).toFixed(2);
-                const totalInterset = (monthly * Payments - principal).toFixed(2);
+        let principal = appInfo?.[0].loan_amount;
+        let loanData = loanDetails?.map((loan) => {
+            const Interest = parseFloat(loan.interest_rate / 100 / 12);
+            const Payments = parseFloat(loan.tenure * 12);
+            const x = Math.pow(1 + Interest, Payments);
+            const monthly = (principal * x * Interest) / (x - 1);
+            const totalPayment = (monthly * Payments).toFixed(2);
+            const totalInterset = (monthly * Payments - principal).toFixed(2);
 
-                loan["monthly"] = monthly;
-                loan["totalPayment"] = totalPayment;
-                loan["totalInterset"] = totalInterset;
+            loan["monthly"] = monthly;
+            loan["totalPayment"] = totalPayment;
+            loan["totalInterset"] = totalInterset;
 
-                return loan;
-            })
-            setLoanDetails(loanData);
-            setRenderItems(renderItems ? false : true);
-        }
+            return loan;
+        })
+        setLoan(loanData);
     }, [appInfo])
 
     const sortLoan = (obj) => {
         if (obj) {
-            let sortArr = loanDetails.sort((a, b) =>
+            let sortArr = loan.sort((a, b) =>
                 a[obj] > b[obj] ? 1 : -1,
             );
-            console.log(sortArr);
-            setLoanDetails(sortArr);
+            setLoan(sortArr);
             setRenderItems(renderItems ? false : true);
         }
     }
@@ -67,7 +64,7 @@ export default function LoanOffer() {
                             </thead>
                             <tbody>
                                 {
-                                    loanDetails?.map((loan) => (
+                                    loan?.map((loan) => (
                                         <tr key={uuid()}>
                                             <td><img src={loan.bank_logo} /></td>
                                             <td>{loan.bank}</td>
