@@ -24,7 +24,7 @@ export default function LoanOffer() {
             return loan;
         })
         setLoan(loanData);
-    }, [appInfo])
+    }, [appInfo, loanDetails])
 
     const sortLoan = (obj) => {
         if (obj) {
@@ -66,7 +66,7 @@ export default function LoanOffer() {
                                 {
                                     loan?.map((loan) => (
                                         <tr key={uuid()}>
-                                            <td><img src={loan.bank_logo} /></td>
+                                            <td><img src={loan.bank_logo} alt="bank logo" /></td>
                                             <td>{loan.bank}</td>
                                             <td>{loan.interest_rate}</td>
                                             <td>{loan.tenure}</td>
