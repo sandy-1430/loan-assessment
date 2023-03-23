@@ -1,0 +1,123 @@
+@import "./variable.scss";
+
+.loanOffers {
+    width: 100%;
+    max-width: 95%;
+    margin: 2rem auto;
+
+    >.d-flex {
+        gap: 1.5rem;
+
+        @media(max-width: 767px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    .loan-info {
+        flex-basis: 75%;
+        overflow: auto;
+
+        @media(max-width: 767px) {
+            flex-basis: 100%;
+            order: 2;
+        }
+
+        .loan_sort {
+            text-align: right;
+
+            select {
+                background-color: $white;
+                box-shadow: 0 3px 20px #0000000b;
+                border: transparent;
+                border-radius: .375rem;
+                padding: 0.5rem 0.75rem;
+                outline: none;
+                font-size: 0.8rem;
+                font-weight: 500;
+                appearance: none;
+                background-image: url("../Assests/down-arrow.svg");
+                background-position: right 0.5rem center;
+                background-repeat: no-repeat;
+                background-size: 1.5em 1.5em;
+                width: 8.5rem;
+            }
+        }
+
+        .loan-table {
+            overflow: auto;
+            max-width: 100%;
+
+            table {
+                width: 100%;
+                max-width: 100%;
+                border-spacing: 0 0.7rem;
+                border-collapse: separate;
+
+                tr {
+                    th {
+                        color: $textColor;
+                        font-size: 0.75rem;
+                        line-height: 1rem;
+                        font-weight: 500;
+                        padding: 0.75rem 1.25rem;
+                        text-align: left;
+                        text-transform: uppercase;
+                    }
+
+                    td {
+                        color: $textColor;
+                        font-size: 0.8rem;
+                        font-weight: 500;
+                        background-color: #fff;
+                        padding: .75rem 1.25rem;
+                        box-shadow: 0 0 #0000, 20px 3px 20px #0000000b;
+
+                        &:first-child {
+                            border-top-left-radius: 0.375rem;
+                            border-bottom-left-radius: 0.375rem;
+                        }
+
+                        &:last-child {
+                            border-top-right-radius: 0.375rem;
+                            border-bottom-right-radius: 0.375rem;
+                        }
+
+                        img {
+                            aspect-ratio: 3/1.5;
+                            width: 5rem;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .userInfo {
+        flex-basis: 25%;
+
+        @media(max-width: 767px) {
+            flex-basis: 100%;
+            order: 1;
+        }
+
+        .userDetails {
+            background: $white;
+            padding: 1rem;
+            border-radius: 0.25rem;
+
+            h3 {
+                color: $textColor;
+                font-size: 1rem;
+                margin: 0 0 2rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+                color: $textColor;
+                font-weight: 500;
+                margin: 0 0 1rem;
+            }
+        }
+    }
+}
